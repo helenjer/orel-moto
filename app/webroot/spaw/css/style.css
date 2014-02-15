@@ -1,0 +1,895 @@
+* {
+  margin: 0;
+  padding: 0;  
+}
+
+html { 
+ height: 100%;
+}
+
+body { 
+  background: url(../img/bg.png) 0% 0% repeat;
+  height:100%;
+}
+
+h1 {
+  font-size: 24px;
+  font-family: Impact, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+h2{
+  font-size: 20px;  
+}
+
+a, a:visited {
+  color: #864b17;
+  font-weight:bold;
+  text-decoration:underline;
+  
+}
+
+a:hover, a:active {
+  color: #9a7409;
+}
+
+input, textarea {
+  outline: none;  
+  border: 1px solid #afaaa6;
+  font-size: 14px;
+}
+
+input { 
+  height: 20px;
+  padding-left: 3px;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+input[type="submit"]:hover {
+  outline: 1px solid #fdd051;;
+}
+
+input[type="file"] {
+  background: white;
+  padding-left: 0px;
+  padding-bottom: 2px;
+  color: black;
+}
+
+a[href*=".xls"], a[href*=".ods"],  a[href*=".doc"], a[href*=".odt"], a[href*=".rtf"], a[href*=".txt"]{
+  background: url(../img/format-icons.png) 0% 0% no-repeat;
+  min-height: 33px;
+  display: inline-block;
+  padding: 10px 0px 0px 60px;
+  margin-bottom: 7px;
+}
+
+a[href*=".doc"], a[href*=".odt"]{
+  background-position: 0 0;
+}
+
+a[href*=".xls"], a[href*=".ods"]{
+  background-position: 0 -47px;
+}
+
+a[href*=".rtf"], a[href*=".txt"]{
+  background-position: 0 -92px;
+}
+
+
+/*a[href*="xls"] {
+  background: url(../img/format-icons.png) 0% 0% no-repeat;
+  min-height: 60px;
+  display: inline-block;
+  padding: 20px 0px 0px 70px;
+}*/
+
+img {
+  border: none;
+}
+
+#main{
+  background: url(../img/bg-road.png) 0% 0% no-repeat;
+  position: relative;
+  min-height: 100%; 
+  min-width: 1240px;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+#sky{
+  background: url(../img/bg-sky.png) 100% 0px repeat-x;
+  position: absolute;
+  top:0;
+  left: 994px;
+  right: 0;
+  height:111px;
+}
+
+#strip-left {
+  background: url(../img/border-left.png) 0% 0% repeat-y;
+  width: 77px;
+  position: absolute;
+  top: 0;
+  bottom:0;
+  left: 0;
+}
+
+#strip-right{
+  background: url(../img/border-right.png) 100% 0% repeat-y;
+  width: 77px;
+  position: absolute;
+  top:0;
+  bottom:0;
+  right: 0;
+}
+
+#caption{
+  background: url(../img/what-it-about.png) 100px 15px no-repeat;
+  width: 385px;
+  height: 71px;
+  float:left;
+}
+
+#header{
+  background: url(../img/bg-header.png) 0% 0% repeat-x;
+  margin-left: 465px;
+  height: 167px;
+  position: relative;
+}
+
+#header-title{
+  background: url(../img/bg-header-left.png) 0% 0% no-repeat;
+  height: 167px;
+  position: relative;
+  left: -82px;
+  min-width: 759px;
+}
+
+#header-title .ht-logo {
+  background: url(../img/orel-moto.png) 0px 5px no-repeat;
+  display: block;
+  margin: 5px 0 0 120px;
+  cursor: pointer;
+  height: 128px;
+  width: 399px;
+  float: left;
+}
+
+#header-title .phones {
+  background: url(../img/header-phones.png) 0% 0% no-repeat;
+  height: 74px;
+  width: 200px;
+  float: left;
+  margin: 20px 0 0 40px; 
+}
+
+#header-title .address {
+  margin-left: 115px;
+  padding-top: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  color: #864b17;
+  clear:both;
+}
+
+#logo {
+  background: url(../img/logo.png) 0% 0% no-repeat;
+  width: 381px;
+  height: 305px;
+  position: absolute;
+  left: 25px;
+  top: 35px;
+  z-index: 3;
+	display: block;
+}
+
+#container {
+  min-height: 400px;
+  min-width: 1240px;
+  max-width: 1400px;
+  padding-bottom: 100px;
+  clear:both;
+}
+
+.breadcrumbs {
+  height: 29px;
+  margin-left: 460px;
+  padding: 11px 10px 0px 15px;
+  font-size:13px;
+  color: #c0c0c0;
+  font-weight: bold;
+	 white-space:nowrap;
+   overflow:hidden;
+}
+
+ .breadcrumbs a {
+  color: #c0c0c0;
+}
+
+/* ----- Главное меню ----- */
+ 
+.menu{
+  height: 386px;
+  width: 244px;
+  margin: 110px 0px 0px 20px;
+	border-right: #ffda73 solid 2px; 
+}
+
+.menu-items{
+	z-index: 200;
+	position: relative;
+}
+
+.menu-item, .submenu-item {
+  height: 30px;
+  display: block;
+  background-repeat: no-repeat;
+}
+
+.menu-item{
+	width: 205px;
+	margin-bottom: 5px;
+	background: url(../img/menu.png);
+}
+
+.submenu-item {
+	width: 138px;
+	background: url(../img/submenu.png) 0 0 no-repeat;
+	margin-left: 25px;
+}
+
+.menu-item.details {
+  height: 60px;
+}
+
+.menu-item.main{
+  background-position: 0px -240px;
+}
+
+.menu-item.main:hover, .menu-item.main.act{
+  background-position: -222px -240px;
+}
+
+.menu-item.tech{
+  background-position: 0px 0px;
+}
+
+.menu-item.tech:hover, .menu-item.tech.act{
+  background-position: -222px 0px;
+}
+
+.menu-item.details{
+  background-position: 0px -30px;
+}
+
+.menu-item.details:hover, .menu-item.details.act{
+  background-position: -222px -30px;
+}
+
+.menu-item.for-sport{
+  background-position: 0px -90px;
+}
+
+.menu-item.for-sport:hover, .menu-item.for-sport.act{
+  background-position: -222px -90px;
+}
+
+.menu-item.for-children{
+  background-position: 0px -120px;
+}
+
+.menu-item.for-children:hover, .menu-item.for-children.act{
+  background-position: -222px -120px;
+}
+
+.menu-item.service{
+  background-position: 0px -150px;
+}
+
+.menu-item.service:hover, .menu-item.service.act{
+  background-position: -222px -150px
+}
+
+.menu-item.gallery{
+  background-position: 0px -180px;
+}
+
+.menu-item.gallery:hover, .menu-item.gallery.act{
+  background-position: -222px -180px;
+}
+
+.menu-item.contacts{
+  background-position: 0px -210px;
+}
+
+.menu-item.contacts:hover, .menu-item.contacts.act{
+  background-position: -222px -210px;
+}
+
+.submenu {
+  background: url(../img/popup.png) 0px 30px no-repeat;
+  width: 215px;
+  height: 335px;
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  padding: 47px 28px 15px 107px;
+  display: none;	
+}
+
+.submenu-item.scooter{
+  background-position: 0px 0px;
+}
+
+.submenu-item.scooter:hover{
+  background-position:  -208px 0px;
+}
+
+.submenu-item.moped{
+  background-position:  0px -30px;
+}
+
+.submenu-item.moped:hover{
+  background-position: -208px -30px;
+}
+
+.submenu-item.motoroller{
+  background-position:  0px -60px;
+}
+
+.submenu-item.motoroller:hover{
+  background-position: -208px -60px;
+}
+
+.submenu-item.motorcycle{
+  background-position: 0px -90px;
+}
+
+.submenu-item.motorcycle:hover{
+  background-position: -208px -90px;
+}
+
+.submenu-item.quadrocycle{
+  background-position: 0px -120px;
+}
+
+.submenu-item.quadrocycle:hover{
+  background-position: -208px -120px;
+}
+
+.submenu-item.spectech{
+  background-position: 0px -150px;
+}
+
+.submenu-item.spectech:hover{
+  background-position: -208px -150px;
+}
+
+.submenu-pic {
+	background: url(../img/submenu-pic.png) no-repeat;
+	width: 215px;
+	height: 155px;
+	margin: 15px 0px 5px 0px;
+}
+
+.submenu-pic.scooter {
+	background-position: 0px 0px;
+}
+
+.submenu-pic.moped{
+	background-position: 0px -510px;
+}
+
+.submenu-pic.motoroller{
+	background-position: 0px -685px;
+}
+
+.submenu-pic.motorcycle{
+	background-position: 0px -165px;
+}
+
+.submenu-pic.quadrocycle{
+	background-position: 0px -330px;
+}
+
+.submenu-pic.spectech{
+	background-position: 0px -834px;
+}
+
+
+/* ----- Основной контент ----- */
+
+.content {
+  background: url(../img/bg-main-topleft.png) 0% 0% no-repeat;
+  margin: 0 100px 5px 95px;
+}
+
+.content-left {
+  width:369px;
+  float:left;
+  min-height: 550px;
+}
+
+.content-left .banners{
+  background: url(../img/content-bg.png) 0px 0px repeat;
+  min-height: 54px;
+	border-bottom: gray 1px dashed;
+}
+
+.content-left .banners-content{
+   border-right: #ffda73 solid 2px; 
+   border-top: #ffda73 solid 2px; 
+   width: 264px;
+}
+
+.content-strip {
+  background: url(../img/bg-main-right.png) 0% 0% repeat-y;
+  width:44px;
+  min-height:550px;
+  float:right;
+	border-bottom: gray 1px dashed;
+}
+
+.content-artical {
+  background: url(../img/content-bg.png) 0px 0px repeat;
+  min-width:387px;
+  max-width:792px;
+  margin: 0 44px 0 369px;
+  min-height: 550px;
+	border-bottom: gray 1px dashed;
+}
+
+.content-artical h1  {
+  height: 30px;
+  padding: 20px;
+  color: #ffda73;
+  text-shadow: #543011 0px 0px 1px, #814C1C 1px 1px 1px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.ca-text {
+  border-left: #ffda73 solid 2px; 
+  border-top: #ffda73 solid 2px; 
+  margin-left: -40px;
+  position: relative;
+  left: -65px;
+  padding: 25px 0px 50px 0px;
+  text-align: justify;
+	line-height: 20px;
+}
+
+.ca-text.info {
+  font-weight: bold;
+}
+
+.ca-text .show-more{
+  display: inline-block;
+  margin: 5px 0px 5px 10px;
+}
+
+.ca-text h2{
+  margin-bottom: 20px;
+	font-size: 18px;
+	color: #704e1f;
+}
+
+.ca-text h3{
+	font-size: 14px;
+}
+
+.ca-text table.description {
+	font-size: 12px;
+	width: 47%;
+  max-width: 700px;
+	border-collapse: collapse;
+}
+
+.ca-text table.description tr:hover {
+	background: rgba(180,180,180, 0.2);
+}
+
+.ca-text table.description td{
+  height: 20px; 
+  border-bottom: 1px dashed gray;
+	padding: 3px 0;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.ca-text table.description tr  td:first-child{
+	padding-right: 20px; 
+	text-align: left;
+}
+
+.ca-text ul {
+  margin: 5px 0px 5px 55px;
+	color: #864b17;
+}
+
+.index-page-txt {
+  margin-top: 20px;
+}
+
+.ca-text.index-page h3 {
+  font-size: 20px;
+  padding: 40px 10px 25px 10px;
+  color: #FFDA73;
+  text-shadow: #543011 0px 0px 1px, #814C1C 1px 1px 1px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.cm-partner-item .cmp-info {
+  display: none;
+  width: 410px;
+  padding: 20px 40px;
+  min-height: 500px;
+  position: absolute;
+  z-index: 999;
+  background: url(../img/popup-big.png) repeat-y;
+  top:50%;
+  left:50%;
+  margin-left: -290px;
+  margin-top: -250px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  -webkit-border-top-right-radius: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  -moz-border-top-right-radius: 30px;
+  -moz-border-bottom-left-radius: 30px;
+  -o-border-top-right-radius: 30px;
+  -o-border-bottom-left-radius: 30px;
+  text-align: justify;
+}
+
+.cm-partner-item {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.popup-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333;
+  opacity: 0.8;
+  z-index: 899;
+  
+}
+
+.ca-text .cm-partner-item .cmp-info h3{
+  font-size: 24px;
+  line-height: 45px;
+  padding: 0 20px 18px 20px;
+  text-align: left;
+}
+
+.ca-text .cm-partner-item .cmp-info .strip {
+  margin: 0 0px 20px 0px;
+  
+}
+
+
+/* ----- Меню - список компаний ----- */
+
+.companies-menu {
+	width: 663px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.companies-menu  a{
+	display: inline-block;
+	cursor: pointer;
+  margin-left: 25px;
+}
+
+.companies-menu  a:first-child{
+  margin-left: 0px;
+}
+
+.company {
+  background: url(../img/company.png) no-repeat;
+	height: 45px; 
+}
+
+.company.omaks{
+  background-position: 0px -50px;
+	width: 42px;
+}
+
+.company.hors{
+  background-position: -50px -50px;
+	width: 70px;
+}
+
+.company.yamasaki{
+  background-position: -127px -50px;
+	width: 100px;
+}
+
+.company.racer {
+  background-position: -235px -50px;
+	width: 86px;
+}
+
+.company.irbis {
+  background-position: -332px -50px;
+	width: 86px;
+}
+
+.company.eurotex {
+  background-position:-427px -50px;
+	width: 106px;
+}
+
+.company.nexus {
+  background-position:-550px -50px;
+	width: 75px;
+}
+
+.companies-menu .company.omaks:hover,
+.companies-menu .company.omaks.act{
+  background-position: 0px 1px;
+	width: 43px;
+}
+
+.companies-menu .company.hors:hover,
+.companies-menu .company.hors.act{
+  background-position: -50px 1px;
+	width: 70px;
+
+}
+
+.companies-menu .company.yamasaki:hover,
+.companies-menu .company.yamasaki.act{
+  background-position: -127px 1px;
+	width: 100px;
+}
+
+.companies-menu .company.racer:hover,
+.companies-menu .company.racer.act{
+  background-position: -235px 1px;
+	width: 86px;
+}
+
+.companies-menu .company.irbis:hover,
+.companies-menu .company.irbis.act{
+  background-position: -332px 1px;
+	width: 86px;
+}
+
+.companies-menu .company.eurotex:hover,
+.companies-menu .company.eurotex.act{
+  background-position:-427px 1px;
+	width: 106px;
+}
+
+.companies-menu .company.nexus:hover,
+.companies-menu .company.nexus.act{
+  background-position: -550px 1px;
+	width: 75px;
+}
+
+.cm-partner-item .cmp-info span.company {
+  display: inline-block;
+  float: right;
+  padding: 0 5px;
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-top-right-radius: 10px;
+  -moz-border-bottom-left-radius: 10px;
+  -o-border-top-right-radius: 10px;
+  -o-border-bottom-left-radius: 10px;
+}
+
+.cm-partner-item .cmp-info span.company.omaks.act{
+  background-position: 5px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.hors.act{
+  background-position: -45px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.yamasaki.act{
+  background-position: -122px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.racer.act {
+  background-position: -230px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.irbis.act {
+  background-position: -327px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.eurotex.act {
+  background-position:-422px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.nexus.act {
+  background-position:-545px -50px;
+}
+
+h2.company {
+	margin: 0 auto;
+}
+
+/* ----- Описание модели ----- */
+
+.motolist-item  {
+	padding: 15px 0 15px 0; 
+	height: 180px;
+}
+
+.motolist-item h3  {
+	margin-bottom: 5px; 
+}
+
+.motolist-item  img{
+  float: left;
+	width: 170px;
+	height: 150px;
+	margin: 0px 30px 0 8px; 
+	box-shadow: gray 1px 1px 8px;
+}
+
+.motolist-item  img:hover{
+  box-shadow: #864B17 1px 1px 10px;
+}
+
+.strip {
+	border-bottom: #CCA400 2px dashed;
+  height: 1px;
+  margin: 0 auto 20px auto;
+  margin-left: 49px;
+}
+
+img.moto {
+  float: left;
+	margin: 0 35px 20px 0;
+	width: 42%;
+	max-width: 300px;
+	box-shadow: gray 2px 2px 15px;
+}
+
+/* ----- Подвал ----- */
+
+#footer {
+  height: 77px;
+	min-width:727px;
+  margin-left: 423px;
+  margin-top:-77px;
+  font-family: Verdana, sans-serif;
+  font-size: 11px;
+  line-height: 15px;  
+}
+
+.footer-left{
+  background: url(../img/bg-footer-left.png) 0% 0% no-repeat;
+  width: 38px;
+  height: 77px;
+  float: left;
+}
+
+.footer-info{
+  background: url(../img/bg-footer.png) 0% 0% repeat-x;
+  position: relative;
+  margin: 0 109px 0 38px;
+  height: 47px;
+  bottom:0px;
+  padding: 15px 0px;
+}
+
+.footer-right{
+  background: url(../img/bg-footer-right.png) 0% 0% repeat-x;
+  width: 109px;
+  height: 77px;
+  float: right;
+}
+
+.footer-info-dev {
+  padding-left: 12px;
+}
+
+.footer-info-design a {
+  font-weight: normal;
+}
+
+.fi-auth {
+  float: left;
+}
+
+.fi-stat {
+  float: right;
+	margin-right: 7px;
+}
+
+/* ---------- */
+
+.clear {
+  clear: both;
+}
+
+.field { 
+  clear:both; 
+  text-align:right; 
+  line-height:25px; 
+  min-height: 20px;
+}
+
+.field  label {
+  float:left; 
+  padding-right:10px;
+}
+
+.form {
+  float:left;
+	width:540px;
+	margin:15px 0 20px 0;
+}
+
+.error-message {
+  font-style: italic;
+  color: red;
+	text-align: center;
+	margin: 10px 0;
+}
+
+.message {
+  font-style: italic;
+  color: green;
+  margin: 10px 0;
+	text-align: center;
+}
+
+.close {color: #462e15; opacity: 0.5; margin: -16px -5px 0 0;/*#6D5741*/ font-family: Georgia, Arial; font-weight: bold; font-size: 24px; float: right; overflow:hidden; cursor: pointer;}
+.close:hover {opacity: 1;}
+
+ /* ----- Панель администрирования ----- */
+ 
+.admin .ca-text {
+  border-left: none; 
+}
+
+.admin .content-left .banners-content{
+   border: none;
+}
+
+.admin .menu{
+  border: none;
+}
+
+ .mototech-admin  .motolist-item  img{
+	width: 80px;
+	height: 70px;
+	margin: 0 15px 0 0; 
+}
+
+ .mototech-admin .motolist-item {
+  padding: 5px 0 5px 0;
+  height: 80px;
+}
+
+.mototech-admin h2:first-child {
+  text-align: center;
+	font-size: 22px;
+}
+.admin-menu {
+  margin-bottom: 20px;
+  text-align: center;
+}
