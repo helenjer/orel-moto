@@ -39,14 +39,15 @@
 	<div class="companies-menu cm-partners">
 		
 		<?php
-		 foreach ($allpartners as $m) {
-			$partner_name = $m['Partner']['name'];
-			$partner_title = strtoupper($partner_name);
-			if (($partner_name === 'hors') || ($partner_name === 'nexus') || ($partner_name === 'omaks')) $partner_title.=' MOTORS';
-			
-			echo '<div class="cm-partner-item"><a class="company '.$partner_name.'" title="Подробнее о партнере '.$partner_title.'"></a><div class="cmp-info  closeable"><span class="close">&times;</span><h3>'.$partner_title.'<span  class="company '.$partner_name.' act"></span></h3><div class="strip"></div>'.$m['Partner']['text'].'<div class="video-show"></div></div></div>';
-
-		    };
+			foreach ($allpartners as $m) {
+				if ($m['Partner']['is_on_main_page']) {
+					$partner_name = $m['Partner']['name'];
+					$partner_title = strtoupper($partner_name);
+					if (($partner_name === 'hors') || ($partner_name === 'nexus') || ($partner_name === 'omaks')) $partner_title.=' MOTORS';
+					
+					echo '<div class="cm-partner-item"><a class="company '.$partner_name.'" title="Подробнее о партнере '.$partner_title.'"></a><div class="cmp-info  closeable"><span class="close">&times;</span><h3>'.$partner_title.'<span  class="company '.$partner_name.' act"></span></h3><div class="strip"></div>'.$m['Partner']['text'].'<div class="video-show"></div></div></div>';
+					}
+		  };
 		 ?>   
 		</div>
 		

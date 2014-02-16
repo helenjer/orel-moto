@@ -627,9 +627,14 @@ img {
 .video-item img:hover {
   box-shadow: #864B17 1px 1px 6px;
 }
+
+.cm-partner-item:first-child {
+  margin-left: 0;
+}
+
 .cm-partner-item {
   display: inline-block;
-  margin-left: 25px;
+  margin-left: 20px;
 }
 
 .popup-fade {
@@ -895,7 +900,7 @@ img {
 }
 
 .company.abm {
-  background-position:-1025px -50px;
+  background-position:-1022px -50px;
   width: 81px;
 }
 
@@ -961,7 +966,7 @@ img {
 
 .companies-menu .company.abm:hover,
 .companies-menu .company.abm.act{
-  background-position: -1025px 1px;
+  background-position: -1022px 1px;
   width: 81px;
 }
 
