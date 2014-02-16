@@ -1079,15 +1079,15 @@ img.moto {
 }
 
 .icon-new {
-	background: url(../img/icon-new.png) no-repeat 0 0;
+	background: url(../img/icon-new.png?12) no-repeat 0 0;
 	width: 54px;
 	height: 53px;
 	position: absolute;
 }
 
 .catl-img .icon-new {
-	top: -24px;
-	right: -24px;
+	top: -12px;
+	right: -12px;
 }
 
 .mil-link .icon-new {

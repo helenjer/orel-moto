@@ -13,10 +13,10 @@
 	<?php if (!empty($tech['Mototechnic']['sub_txt'])) echo '<div class="sub-text-top">'.$tech['Mototechnic']['sub_txt'].'</div>';?>
 		<div class="ca-text-left">
 		  <?php
-			if (!empty($tech['Mototechnic']['img'])) {
+			if (!empty($tech['Mototechnic']['img'])) {				
 				echo "<div class='catl-img'>";
 						// check if new added model
-						if ($moto['Mototechnic']['is_new']) echo "<span class='icon-new'></span>";
+						if ($tech['Mototechnic']['is_new']) echo "<span class='icon-new'></span>";
 						
 					echo $html->image($tech['Mototechnic']['img'], array('class'=>'moto'));
 				echo "</div>";
