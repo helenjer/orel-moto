@@ -43,6 +43,7 @@ else if ($is_motochild) echo(' детского транспорта')?>
 			echo "<br><br><div class='field'>".$this->Form->input('price', array( 'style' => 'width: 150px','label'=> 'Цена модели (руб.)'))."</div>";
 			echo "<div class='field'>".$this->Form->input('presence', array( 'style' => 'width: 270px','label'=> 'Наличие'))."</div>";
 			echo "<br><div class='field'>".$this->Form->input('img', array('type' => 'file', 'label'=> 'Изображение'))."</div>";
+			echo "<br><div class='field'>".$this->Form->input('is_new', array('type'=>'checkbox', 'style' => '','label'=> 'Новая модель'))."</div>";
 			echo "<div class='field'>".$this->Form->input('date_add', array('label'=> 'Дата'))."</div>";
 			if (!$is_bicycle && !$is_motochild) {
 				//echo "<br><br>Видео"; $spaw4->show();

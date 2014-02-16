@@ -16,10 +16,7 @@
 			if (!empty($tech['Mototechnic']['img'])) {
 				echo "<div class='catl-img'>";
 						// check if new added model
-						$check_date = new DateTime();
-						$check_date->modify('-2 month');
-						$date = new DateTime($tech['Mototechnic']['date_add']);
-						if ($date >= $check_date) echo "<span class='icon-new'></span>";
+						if ($moto['Mototechnic']['is_new']) echo "<span class='icon-new'></span>";
 						
 					echo $html->image($tech['Mototechnic']['img'], array('class'=>'moto'));
 				echo "</div>";

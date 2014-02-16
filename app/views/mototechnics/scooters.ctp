@@ -36,10 +36,7 @@
 			 echo "<div class='mi-left'>";
 					echo "<a href='/mototechnics/view/".$moto['Mototechnic']['id']."' class='mil-link'>";
 						// check if new added model
-						$check_date = new DateTime();
-						$check_date->modify('-2 month');
-						$date = new DateTime($moto['Mototechnic']['date_add']);
-						if ($date >= $check_date) echo "<span class='icon-new'></span>";
+						if ($moto['Mototechnic']['is_new']) echo "<span class='icon-new'></span>";
 						
 						if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
 						else echo $html->image('logo.png');
