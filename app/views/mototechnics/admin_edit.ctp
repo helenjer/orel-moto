@@ -1,4 +1,5 @@
 <?php
+
 	include("spaw/spaw.inc.php"); 
 	$spaw1 = new SpawEditor("spaw1", @$this->data['Mototechnic']['short_txt']);	
 	$spaw2 = new SpawEditor("spaw2", @$this->data['Mototechnic']['full_txt']);

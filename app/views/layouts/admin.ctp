@@ -44,10 +44,10 @@
 				</div>
 					<div class="content-strip"></div>
 					<div class="content-artical">
-					  <h1>РџР°РЅРµР»СЊ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёСЏ</h1>
+					  <h1>Панель администрирования</h1>
 						<div class="admin-menu">
-							<?php echo $this->Html->link('РќР° РіР»Р°РІРЅСѓСЋ', array('admin'=>true, 'controller'=>'users', 'action' => 'index'))." | ".
-						           $this->Html->link('Р’С‹С…РѕРґ', array('admin'=>false, 'controller'=>'users', 'action' => 'logout'))."<br>";?>
+							<?php echo $this->Html->link('На главную', array('admin'=>true, 'controller'=>'users', 'action' => 'index'))." | ".
+						           $this->Html->link('Выход', array('admin'=>false, 'controller'=>'users', 'action' => 'logout'))."<br>";?>
 						</div>
 						
 						<?php echo $this->Session->flash(); ?>
@@ -65,8 +65,8 @@
 		<div class="footer-right"></div>
 		<div class="footer-info">
 			<div class="fi-auth">
-			    <span class="footer-info-dev">Р Р°Р·СЂР°Р±РѕС‚РєР° СЃР°Р№С‚Р°: Р–РµСЂРґРѕРІР° Р•Р»РµРЅР°</span><br> 
-			    <span class="footer-info-design">Р”РёР·Р°Р№РЅ: <a href="http://alex21.jino.ru">РђР»РµРєСЃРµР№ РџСЂР°РІРґРёРЅ</a></span>
+			    <span class="footer-info-dev">Разработка сайта: Жердова Елена</span><br> 
+			    <span class="footer-info-design">Дизайн: <a href="http://alex21.jino.ru">Алексей Правдин</a></span>
 			</div>
 			<div class="fi-stat"><!--Openstat-->
 				<span id="openstat2269943"></span>

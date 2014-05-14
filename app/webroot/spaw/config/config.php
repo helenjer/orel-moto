@@ -12,7 +12,9 @@ if (!preg_match('/\/$/', SpawConfig::getStaticConfigValue('DOCUMENT_ROOT')))
 SpawConfig::setStaticConfigItem('SPAW_ROOT', str_replace("\\","/",realpath(dirname(__FILE__)."/..").'/'));
 // sets virtual path to the spaw directory on the server
 // if calculation fails set this manually
-SpawConfig::setStaticConfigItem('SPAW_DIR', '/'.str_replace(SpawConfig::getStaticConfigValue("DOCUMENT_ROOT"),'',SpawConfig::getStaticConfigValue("SPAW_ROOT")));
+#SpawConfig::setStaticConfigItem('SPAW_DIR', '/'.str_replace(SpawConfig::getStaticConfigValue("DOCUMENT_ROOT"),'',SpawConfig::getStaticConfigValue("SPAW_ROOT")));
+SpawConfig::setStaticConfigItem('SPAW_DIR', 'http://orel-moto.ru/app/webroot/spaw/');
+
 
 /*
 // semi-automatic path calculation
