@@ -9,7 +9,7 @@ class MotofilesController extends AppController {
 		$wrongformat = false;
 		$file = $this->data['Motofile']['url'];
 			if (!empty($file['name'])) { //изображение выбрано для загрузки 
-				if (!in_array($file['type'],$allow_formats) && !preg_match('/(\.xls$)|(\.xlsx$)|(\.doc$)|(\.docx$)|(\.rtf$)/',$file['name'])) {
+				if (!in_array($file['type'],$allow_formats) && !preg_match('/(\.pdf$)|(\.xls$)|(\.xlsx$)|(\.doc$)|(\.docx$)|(\.rtf$)/',$file['name'])) {
 					$wrongformat = true;
 				} 
 				elseif ($file['error'] == 0) {
@@ -23,7 +23,7 @@ class MotofilesController extends AppController {
 				} else $this->Session->setFlash('Ошибка при загрузке файла');  
 				} else 	$this->data['Motofile']['url'] = $oldfile; // оставляем старое изображение
 
-			if ($wrongformat) $this->Session->setFlash('Недопустимый формат файла. Доступные форматы: DOC, DOCX, XLS, XLSX, RTF, TXT');
+			if ($wrongformat) $this->Session->setFlash('Недопустимый формат файла. Доступные форматы: PDF, DOC, DOCX, XLS, XLSX, RTF, TXT');
 				elseif ($this->Motofile->save($this->data)) {
 					if ($optype === 'add') {
 						//рассылка -> do nothing

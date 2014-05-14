@@ -909,6 +909,11 @@ img {
   width: 106px;
 }
 
+.company.fury {
+  background-position:-1260px -50px;
+  width: 67px;
+}
+
 .companies-menu .company.omaks:hover,
 .companies-menu .company.omaks.act{
   background-position: 0px 1px;
@@ -974,6 +979,12 @@ img {
 .companies-menu .company.xmoto.act{
   background-position: -1128px 1px;
   width: 106px;
+}
+
+.companies-menu .company.fury:hover,
+.companies-menu .company.fury.act{
+  background-position: -1260px 1px;
+  width: 67px;
 }
 
 .cm-partner-item .cmp-info span.company {

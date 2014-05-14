@@ -12,7 +12,7 @@
   	$is_bicycle = in_array('bicycle',$this->passedArgs);
 	$is_motochild = in_array('motochild',$this->passedArgs);
 	if ($is_bicycle) {
-		$options_for_company = array('racer' => 'Racer', 'stels' => 'Stels', 'forward' => 'Forward');
+		$options_for_company = array('racer' => 'Racer', 'stels' => 'Stels', 'forward' => 'Forward', 'fury' => 'FURY');
 		$options_for_subtype = array('children' => 'Детские', 'folding' => 'Складные', 'road'=>'Дорожные', 'sport' => 'Спортивные', 'two_suspend'=>'Двухподвесы');
 	}
 	else  if ($is_motochild) {
