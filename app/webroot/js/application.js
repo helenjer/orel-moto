@@ -61,7 +61,7 @@ $(document).ready(function(){
                $('.popup-fade').fadeOut(200);
                $('.cmp-info').hide();
                
-               $('.video-item-info').hide();
+               $('.video-item-info, .photo-popup').hide();
                $('.video-show').html('');
                
             }
@@ -122,6 +122,12 @@ $(document).ready(function(){
 
          });
 				 if ($(".gallery").length)	$(".gallery .group1").colorbox({rel:'group1'});
+				 
+				 // попап фото модели
+				 $('.ca-text-left .catl-img').click(function(){
+						$('.photo-popup').css({'top': $(document).scrollTop()+ 150})
+						$('.popup-fade, .photo-popup').fadeIn(200);
+					})
         
 				
 				/**** админ ****/     //TODO - отдельный файл

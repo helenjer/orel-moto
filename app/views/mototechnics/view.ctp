@@ -18,7 +18,7 @@
 						// check if new added model
 						if ($tech['Mototechnic']['is_new']) echo "<span class='icon-new'></span>";
 						
-					echo $html->image($tech['Mototechnic']['img'], array('class'=>'moto'));
+					echo $html->image($tech['Mototechnic']['img'], array('class'=>'moto'));				
 				echo "</div>";
 			}
 		  ?>
@@ -51,5 +51,14 @@
 		</div>
 		<?php echo $tech['Mototechnic']['full_txt'];?>
 		<div class="clear"></div>
+</div>
+
+<div class="photo-popup closeable">
+	<span class="close">&times;</span> 
+	<div class="photo-popup-body">
+		<?php
+			echo $html->image($tech['Mototechnic']['img'], array('class'=>''));
+		?>
+	</div> 
 </div>
 <div class="popup-fade" style="display: none;"></div>

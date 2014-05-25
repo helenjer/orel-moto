@@ -568,6 +568,7 @@ img {
 }
 
 .cm-partner-item .cmp-info,
+.photo-popup,
 .video-item-info{
   display: none;
   position: absolute;
@@ -602,14 +603,13 @@ img {
 }
 
 .video-item-info {
-    background: url(../img/popup-big-video.png) repeat-y;
-    padding: 25px 40px;
-    width: 800px;
-    min-height: 455px;
+		background: url(../img/popup-big-video.png) repeat-y;
+		width: 800px;
     margin-left: -490px;
+		min-height: 455px;
     margin-top: -250px;
+		padding: 25px 40px;
     text-align: center;
-  
 }
 
 .video-item-info .close {
@@ -626,6 +626,20 @@ img {
 
 .video-item img:hover {
   box-shadow: #864B17 1px 1px 6px;
+}
+
+.photo-popup {
+	background: url(../img/popup-big-photo.png) repeat-y;
+	width: 640px;
+	margin-left: -360px;
+	min-height: 200px;
+	padding: 25px 40px;
+  text-align: center;
+}
+
+.photo-popup img {
+	max-width: 600px;
+	max-height: 680px;
 }
 
 .cm-partner-item:first-child {
@@ -1074,6 +1088,7 @@ img.moto {
 	min-height: 260px;
 	max-width: 300px;
 	box-shadow: gray 2px 2px 15px;
+	cursor: pointer;
 }
 
 .btn-more {
