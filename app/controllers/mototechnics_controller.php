@@ -66,10 +66,10 @@ class MototechnicsController extends AppController {
 	
 	function scooters($company = null)  {
 		if ($company != null) {
-			$scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 			$this->set('thiscrumb','1');
 		}
-		else $scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else $scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
     foreach ($scooters as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -81,10 +81,10 @@ class MototechnicsController extends AppController {
 	
 	function mopeds($company = null)  { 
 		if ($company != null) {
-			$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' =>'moped', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' =>'moped', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 			$this->set('thiscrumb','1');
 		}
-		else 	$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'moped', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else 	$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'moped', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($mopeds as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -97,10 +97,10 @@ class MototechnicsController extends AppController {
 	
 	function motorcycles($company = null)  {
 		if ($company != null) {
-			$motorcycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$motorcycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else	$motorcycles =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else	$motorcycles =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($motorcycles as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -112,10 +112,10 @@ class MototechnicsController extends AppController {
 	
 	function motorollers($company = null)  {
 		if ($company != null) {
-			$motorollers = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$motorollers = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else	$motorollers =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else	$motorollers =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($motorollers as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -127,10 +127,10 @@ class MototechnicsController extends AppController {
 	
 	function quadrocycles($company = null)  {
 		if ($company != null) { 
-			$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else 	$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else 	$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($quadrocycles as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -143,10 +143,10 @@ class MototechnicsController extends AppController {
 	
 	function snows($company = null)  {
 		if ($company != null) { 
-			$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'company' => $company), 'order' => array('weight', 'date_add')));
+			$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else 	$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight', 'date_add')));
+		else 	$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($snows as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -246,11 +246,11 @@ class MototechnicsController extends AppController {
 		$types = Array('scooter', 'moped', 'motorcycle', 'motoroller', 'quadrocycle', 'snow');
 		$models = Array();
 		foreach ($types as $type) {
-			$models[$type] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  $type), 'order' => array('company', 'weight', 'date_add')));
+			$models[$type] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  $type), 'order' => array('company', 'weight DESC', 'date_add')));
 		}
 		$this->set('models', $models);
 		/*TODO 'undef' here and in views*/
-		$this->set('undef', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  array('scooter', 'moped'), 'volume' => ''), 'order' => array('company', 'weight', 'date_add'))));
+		$this->set('undef', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  array('scooter', 'moped'), 'volume' => ''), 'order' => array('company', 'weight DESC', 'date_add'))));
 		$this->set('title_for_layout', 'Редактирование мототехники');
 	}
 	
@@ -261,7 +261,7 @@ class MototechnicsController extends AppController {
 			$models = Array();
 			foreach ($subtypes as $subtype) {
 				$models[$subtype] = array();
-				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  $subtype), 'order' => array('company', 'weight', 'date_add')));
+				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  $subtype), 'order' => array('company', 'weight DESC', 'date_add')));
 				$models[$subtype]['files'] = $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' => $subtype), 'order' => array('company', 'date_add')));
 			}
 			$this->set('models', $models);
@@ -275,7 +275,7 @@ class MototechnicsController extends AppController {
 			$models = Array();
 			foreach ($subtypes as $subtype) {
 				$models[$subtype] = array();
-				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  $subtype), 'order' => array('company', 'weight', 'date_add')));
+				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  $subtype), 'order' => array('company', 'weight DESC', 'date_add')));
 				$models[$subtype]['files'] = $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' => $subtype), 'order' => array('company', 'date_add')));
 			}
 			$this->set('models', $models);   
