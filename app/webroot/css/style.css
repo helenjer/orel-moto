@@ -928,6 +928,16 @@ img {
   width: 67px;
 }
 
+.company.tank {
+  background-position:-1342px -50px;
+  width: 70px;
+}
+
+.company.maverick {
+  background-position:-1435px -50px;
+  width: 99px;
+}
+
 .companies-menu .company.omaks:hover,
 .companies-menu .company.omaks.act{
   background-position: 0px 1px;
@@ -999,6 +1009,18 @@ img {
 .companies-menu .company.fury.act{
   background-position: -1260px 1px;
   width: 67px;
+}
+
+.companies-menu .company.tank:hover,
+.companies-menu .company.tank.act{
+  background-position: -1342px 1px;
+  width: 70px;
+}
+
+.companies-menu .company.maverick:hover,
+.companies-menu .company.maverick.act{
+  background-position: -1435px 1px;
+  width: 99px;
 }
 
 .cm-partner-item .cmp-info span.company {
