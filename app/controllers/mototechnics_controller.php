@@ -1,6 +1,6 @@
 <?php
 class MototechnicsController extends AppController {
-    var $helpers = array ('Html','Form');
+    var $helpers = array ('Html','Form','Mototech');
     var $name = 'Mototechnics';
 		
 	function _load_img ($oldimg, $optype) {		
@@ -33,9 +33,30 @@ class MototechnicsController extends AppController {
 					}
 				    if ($optype === 'add') $this->Session->setFlash('Модель успешно добавлена');
 					if ($optype === 'edit') $this->Session->setFlash('Модель успешно обновлена');
-					$this->redirect(array('controller' => 'users', 'admin'=> true, 'action' => 'index'));         
+					// redirect, depending on entity type;
+					$prev_url = $this->_getPrevPageLink();
+					$this->redirect(array('controller' => 'users', 'admin'=> true, 'controller' => 'mototechnics', 'action' => $prev_url['action'], '#' => $prev_url['anchor']));         
 					return true;
 				}
+	}
+	
+	function _getPrevPageLink() {
+		$prev_url = array();
+		switch ($this->data['Mototechnic']['type']) {
+			case  'bicycle':
+				$prev_url['action'] = 'bicycles_index';
+				$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
+			break;
+			case  'motochild':
+				$prev_url['action'] = 'motochild_index';
+				$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
+			break;
+			default:
+				$prev_url['action'] = 'index';
+				$prev_url['anchor'] = $this->data['Mototechnic']['type'];
+			break;
+		}
+		return $prev_url;
 	}
 	
 	
@@ -222,49 +243,42 @@ class MototechnicsController extends AppController {
 
 	function admin_index() {
 		$this->layout = 'admin';
-		$this->set('mopeds', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'moped'), 'order' => array('company', 'weight', 'date_add'))));
-		$this->set('scooters', $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter'), 'order' => array('company', 'weight', 'date_add'))));
+		$types = Array('scooter', 'moped', 'motorcycle', 'motoroller', 'quadrocycle', 'snow');
+		$models = Array();
+		foreach ($types as $type) {
+			$models[$type] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  $type), 'order' => array('company', 'weight', 'date_add')));
+		}
+		$this->set('models', $models);
+		/*TODO 'undef' here and in views*/
 		$this->set('undef', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  array('scooter', 'moped'), 'volume' => ''), 'order' => array('company', 'weight', 'date_add'))));
-		$this->set('motorollers', $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller'), 'order' => array('company', 'weight', 'date_add'))));
-		$this->set('motorcycles', $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle'), 'order' => array('company', 'weight', 'date_add'))));
-		$this->set('quadrocycles', $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle'), 'order' => array('company', 'weight', 'date_add'))));
-		$this->set('snow', $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow'), 'order' => array('company', 'weight', 'date_add'))));
 		$this->set('title_for_layout', 'Редактирование мототехники');
 	}
 	
 	function admin_bicycles_index () {
 	    $this->layout = 'admin';
 	    $this->loadModel('Motofile');
-	    $this->set('children', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'children'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('folding', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'folding'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('road', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'road'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('sport', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'sport'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('two_suspend', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'two_suspend'), 'order' => array('company', 'weight', 'date_add'))));
-	    
-	    $this->set('motofiles_children', $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'children'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_folding', $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'folding'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_road', $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'road'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_sport', $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'sport'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_two_suspend', $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  'two_suspend'), 'order' => array('company','date_add'))));
-
+			$subtypes = Array('children', 'folding', 'road', 'sport', 'two_suspend');
+			$models = Array();
+			foreach ($subtypes as $subtype) {
+				$models[$subtype] = array();
+				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' =>  $subtype), 'order' => array('company', 'weight', 'date_add')));
+				$models[$subtype]['files'] = $this->Motofile->find('all',  array('conditions' => array('type' =>  'bicycle', 'sub_type' => $subtype), 'order' => array('company', 'date_add')));
+			}
+			$this->set('models', $models);
 	    $this->set('title_for_layout', 'Редактирование велосипедов');  
 	}
 	
 	function admin_motochild_index () {
 	    $this->layout = 'admin';
 	    $this->loadModel('Motofile');
-	    $this->set('cars_akkum_radio', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars_akkum_radio'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('cars_akkum', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars_akkum'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('motocycle_akkum', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'motocycle_akkum'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('bicycles_3', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'bicycles_3'), 'order' => array('company', 'weight', 'date_add'))));
-	    $this->set('cars', $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars'), 'order' => array('company', 'weight', 'date_add'))));
-	    
-	    $this->set('motofiles_cars_akkum_radio', $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars_akkum_radio'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_cars_akkum', $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars_akkum'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_motocycle_akkum', $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'motocycle_akkum'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_bicycles_3', $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'bicycles_3'), 'order' => array('company', 'date_add'))));
-	    $this->set('motofiles_cars', $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  'cars'), 'order' => array('company','date_add'))));
-
+			$subtypes = Array('cars_akkum_radio', 'cars_akkum', 'motocycle_akkum', 'bicycles_3', 'cars');
+			$models = Array();
+			foreach ($subtypes as $subtype) {
+				$models[$subtype] = array();
+				$models[$subtype]['models'] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' =>  $subtype), 'order' => array('company', 'weight', 'date_add')));
+				$models[$subtype]['files'] = $this->Motofile->find('all',  array('conditions' => array('type' =>  'motochild', 'sub_type' => $subtype), 'order' => array('company', 'date_add')));
+			}
+			$this->set('models', $models);   
 	    $this->set('title_for_layout', 'Редактирование детского транспорта');  
 	}
 

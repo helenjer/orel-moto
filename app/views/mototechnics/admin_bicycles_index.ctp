@@ -1,7 +1,7 @@
 <div class="ca-text mototech-admin"> 
 <h2>Редактирование велосипедов</h2>
 
-<?php echo $this->Html->link('Добавить модель', array('admin' => true, 'controller' => 'mototechnics', 'action' => 'add', 'bicycle'))."<br />"; ?>		
+<?php echo $this->Html->link('+ Добавить модель', array('admin' => true, 'controller' => 'mototechnics', 'action' => 'add', 'bicycle'), array('class' => 'add-entity-link'))."<br />"; ?>		
 <?php echo $this->Html->link('Добавить прайс-лист', array('admin' => true, 'controller' => 'motofiles', 'action' => 'add', 'bicycle'))."<br /><br />"; ?>
 <?php 
 function show_motofiles ($files_arr, $this_) {
@@ -18,10 +18,11 @@ function show_motofiles ($files_arr, $this_) {
 }
 ?>
 
+<?php echo $this->Mototech->categoriesAnchorList($models); ?>
 
-		<h2>Детские</h2>
-		<?php
-			foreach ($children as $moto) {
+	<?php foreach ($models as $type => $list) {
+			echo "<h2 id='".$type."'>".$this->Mototech->typeName($type, 1)."</h2>";
+			foreach ($list['models'] as $moto)  {
 				echo "<div class='motolist-item'>";
 					if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
 						else echo $html->image('logo.png');
@@ -30,103 +31,16 @@ function show_motofiles ($files_arr, $this_) {
 					echo "<div>Наличие: "; if (!empty($moto['Mototechnic']['presence'])) echo "<b>".$moto['Mototechnic']['presence']."</b>"; else echo "--"; echo "</div>";
 
 					echo "<div class='motolist-item-desc'>";
-						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id'],  $moto['Mototechnic']['type']))." | ".
+						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id']))." | ".
 								 $this->Html->link('Удалить', array('admin'=>true, 'action' => 'delete', $moto['Mototechnic']['id']), null, 'Модель будет удалена. Вы уверены?');
 					echo "</div>";
 					echo "<div class='clear'></div>"; 
-				echo "</div>"; 
+				echo "</div>";
+				}
+				
+				show_motofiles($list['files'], $this);
 			}
-			
-			show_motofiles($motofiles_children, $this);
-			
-		?>
-		
-		<br>
-		<h2>Складные</h2>
-		<?php
-			foreach ($folding as $moto) {
-				echo "<div class='motolist-item'>";
-					if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
-						else echo $html->image('logo.png');
-					echo "<h3>".$moto['Mototechnic']['model']."</h3>";
-					echo "<div>Цена: "; if (!empty($moto['Mototechnic']['price'])) echo "<b>".$moto['Mototechnic']['price']." руб.</b>"; else echo "--"; echo "</div>";
-					echo "<div>Наличие: "; if (!empty($moto['Mototechnic']['presence'])) echo "<b>".$moto['Mototechnic']['presence']."</b>"; else echo "--"; echo "</div>";
-					echo "<div class='motolist-item-desc'>";
-						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id'],  $moto['Mototechnic']['type']))." | ".
-								 $this->Html->link('Удалить', array('admin'=>true, 'action' => 'delete', $moto['Mototechnic']['id']), null, 'Модель будет удалена. Вы уверены?');
-					echo "</div>";
-					echo "<div class='clear'></div>"; 
-				echo "</div>"; 
-			}
-			
-			show_motofiles($motofiles_folding, $this);
-			
-		?>
-		
-		<br>
-		<h2>Дорожные</h2>
-		<?php
-			foreach ($road as $moto) {
-				echo "<div class='motolist-item'>";
-					if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
-						else echo $html->image('logo.png');
-					echo "<h3>".$moto['Mototechnic']['model']."</h3>";
-					echo "<div>Цена: "; if (!empty($moto['Mototechnic']['price'])) echo "<b>".$moto['Mototechnic']['price']." руб.</b>"; else echo "--"; echo "</div>";
-					echo "<div>Наличие: "; if (!empty($moto['Mototechnic']['presence'])) echo "<b>".$moto['Mototechnic']['presence']."</b>"; else echo "--"; echo "</div>";
-					echo "<div class='motolist-item-desc'>";
-						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id'],  $moto['Mototechnic']['type']))." | ".
-								 $this->Html->link('Удалить', array('admin'=>true, 'action' => 'delete', $moto['Mototechnic']['id']), null, 'Модель будет удалена. Вы уверены?');
-					echo "</div>";
-					echo "<div class='clear'></div>"; 
-				echo "</div>"; 
-			}
-			
-			show_motofiles($motofiles_road, $this);
-		?>
-		
-		<br>
-		<h2>Спортивные</h2>
-		<?php
-			foreach ($sport as $moto) {
-				echo "<div class='motolist-item'>";
-					if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
-						else echo $html->image('logo.png');
-					echo "<h3>".$moto['Mototechnic']['model']."</h3>";
-					echo "<div>Цена: "; if (!empty($moto['Mototechnic']['price'])) echo "<b>".$moto['Mototechnic']['price']." руб.</b>"; else echo "--"; echo "</div>";
-					echo "<div>Наличие: "; if (!empty($moto['Mototechnic']['presence'])) echo "<b>".$moto['Mototechnic']['presence']."</b>"; else echo "--"; echo "</div>";
-					echo "<div class='motolist-item-desc'>";
-						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id'], $moto['Mototechnic']['type']))." | ".
-								 $this->Html->link('Удалить', array('admin'=>true, 'action' => 'delete', $moto['Mototechnic']['id']), null, 'Модель будет удалена. Вы уверены?');
-					echo "</div>";
-					echo "<div class='clear'></div>"; 
-				echo "</div>"; 
-			}
-			
-			show_motofiles($motofiles_sport, $this);
-		?>
-		
-		<br>
-		<h2>Двухподвесные</h2>
-		<?php
-			foreach ($two_suspend as $moto) {
-				echo "<div class='motolist-item'>";
-					if (!empty($moto['Mototechnic']['img'])) echo $html->image($moto['Mototechnic']['img']);
-						else echo $html->image('logo.png');
-					echo "<h3>".$moto['Mototechnic']['model']."</h3>";
-					echo "<div>Цена: "; if (!empty($moto['Mototechnic']['price'])) echo "<b>".$moto['Mototechnic']['price']." руб.</b>"; else echo "--"; echo "</div>";
-					echo "<div>Наличие: "; if (!empty($moto['Mototechnic']['presence'])) echo "<b>".$moto['Mototechnic']['presence']."</b>"; else echo "--"; echo "</div>";
-					echo "<div class='motolist-item-desc'>";
-						echo $this->Html->link('Редактировать', array('admin'=>true, 'action' => 'edit', $moto['Mototechnic']['id'], $moto['Mototechnic']['type']))." | ".
-								 $this->Html->link('Удалить', array('admin'=>true, 'action' => 'delete', $moto['Mototechnic']['id']), null, 'Модель будет удалена. Вы уверены?');
-					echo "</div>";
-					echo "<div class='clear'></div>"; 
-				echo "</div>"; 
-			}
-			
-			show_motofiles($motofiles_two_suspend, $this);
-		?>
-		
-
+	?>
 		
 		<?php // echo "<br>".$this->Html->link("Редактировать описание страницы Мототехника", array('admin' => true, 'controller' => 'mototechnics', 'action' => 'mototechnics_meta'/*, $idmeta['Page']['id']*/)); 
 		?>

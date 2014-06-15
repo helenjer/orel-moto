@@ -9,8 +9,8 @@
 	$spaw4->height = '150px'; 
 	$options_for_type = array('scooter' => 'Скутер', 'moped' => 'Мопед', 'motoroller'=>'Мотороллер', 'motorcycle' => 'Мотоцикл', 'quadrocycle' => 'Квадроцикл','snow' => 'Снегоходы');
 	//$options_for_company = array('omaks' => 'Omaks', 'hors' => 'HorsMoto', 'yamasaki' => 'Yamasaki', 'racer' => 'Racer', 'irbis' => 'Irbis', 'eurotex' => 'Eurotex', 'nexus' => 'Nexus Motors');
-  	$is_bicycle = in_array('bicycle',$this->passedArgs);
-	$is_motochild = in_array('motochild',$this->passedArgs);
+  $is_bicycle = ($this->data['Mototechnic']['type'] == 'bicycle');
+	$is_motochild = ($this->data['Mototechnic']['type'] == 'motochild');
 	if ($is_bicycle) {
 		$options_for_company = array('racer' => 'Racer', 'stels' => 'Stels', 'forward' => 'Forward', 'fury' => 'FURY');
 		$options_for_subtype = array('children' => 'Детские', 'folding' => 'Складные', 'road'=>'Дорожные', 'sport' => 'Спортивные', 'two_suspend'=>'Двухподвесы');
