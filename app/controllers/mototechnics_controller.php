@@ -35,14 +35,15 @@ class MototechnicsController extends AppController {
 					if ($optype === 'edit') $this->Session->setFlash('Модель успешно обновлена');
 					// redirect, depending on entity type;
 					$prev_url = $this->_getPrevPageLink();
-					$this->redirect(array('controller' => 'users', 'admin'=> true, 'controller' => 'mototechnics', 'action' => $prev_url['action'], '#' => $prev_url['anchor']));         
+					$this->redirect(array('admin'=> true, 'controller' => 'mototechnics', 'action' => $prev_url['action'], '#' => $prev_url['anchor']));         
 					return true;
 				}
 	}
 	
 	function _getPrevPageLink() {
 		$prev_url = array();
-		switch ($this->data['Mototechnic']['type']) {
+		$m_type = $this->data['Mototechnic']['type'] ? $this->data['Mototechnic']['type'] : $this->Mototechnic->field('type');
+		switch ($m_type) {
 			case  'bicycle':
 				$prev_url['action'] = 'bicycles_index';
 				$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
@@ -330,10 +331,12 @@ class MototechnicsController extends AppController {
 		//удаление изображения с диска
 		$this->Mototechnic->id = $id;
 		$img = $this->Mototechnic->field('img');
+		$prev_url = $this->_getPrevPageLink();
 		if ($this->Mototechnic->delete($id)) {
 			if (!empty($img)) @unlink(IMAGES.$img);
 			$this->Session->setFlash('Модель успешно удалена');
-			$this->redirect(array('admin'=> true, 'action' => 'index'));     
+			$this->redirect(array('admin'=> true, 'controller' => 'mototechnics', 'action' => $prev_url['action'], '#' => $prev_url['anchor']));         
+	    
 		}
 		$this->set('title_for_layout', 'Удаление модели');
 	}
