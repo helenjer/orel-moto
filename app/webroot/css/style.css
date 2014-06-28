@@ -334,6 +334,10 @@ img {
   display: none;	
 }
 
+.submenu.submenu_bicycles {
+	top: 130px;
+}
+
 .submenu-item.scooter{
   background-position: 0px 0px;
 }
@@ -382,6 +386,46 @@ img {
   background-position: -208px -150px;
 }
 
+.submenu-item.children{
+  background-position: 0px -180px;
+}
+
+.submenu-item.children:hover{
+  background-position: -208px -180px;
+}
+
+.submenu-item.folding{
+  background-position: 0px -210px;
+}
+
+.submenu-item.folding:hover{
+  background-position: -208px -210px;
+}
+
+.submenu-item.road{
+  background-position: 0px -240px;
+}
+
+.submenu-item.road:hover{
+  background-position: -208px -240px;
+}
+
+.submenu-item.sport{
+  background-position: 0px -270px;
+}
+
+.submenu-item.sport:hover{
+  background-position: -208px -270px;
+}
+
+.submenu-item.two_suspend{
+  background-position: 0px -300px;
+}
+
+.submenu-item.two_suspend:hover{
+  background-position: -208px -300px;
+}
+
 .submenu-pic {
 	background: url(../img/submenu-pic.png) no-repeat;
 	width: 215px;
@@ -411,6 +455,27 @@ img {
 
 .submenu-pic.snow{
 	background-position: 0px -834px;
+}
+
+.submenu_bicycles .submenu-pic,
+.submenu-pic.children{
+	background-position: 0px -988px;
+}
+
+.submenu-pic.folding{
+	background-position: 0px -1180px;
+}
+
+.submenu-pic.road{
+	background-position: 0px -1350px;
+}
+
+.submenu-pic.sport{
+	background-position: 0px -1512px;
+}
+
+.submenu-pic.two_suspend{
+	background-position: 0px -1680px;
 }
 
 
@@ -1095,6 +1160,7 @@ h2.company {
 
 .motolist-item .mil-link {
 	position: relative;
+	display: block;
 }
 
 .strip {

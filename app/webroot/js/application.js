@@ -18,8 +18,8 @@ function resizeblock() {
 $(document).ready(function(){
   resizeblock();
 	// меню
-	$('.menu-item.tech').mouseover(function(){
-	   $('.submenu').fadeIn();
+	$('.menu-item.tech, .menu-item.bicycles').mouseover(function(){
+	  $(this).next('.submenu').fadeIn();
 	})
 	
 	$('.submenu').mouseleave(function(){

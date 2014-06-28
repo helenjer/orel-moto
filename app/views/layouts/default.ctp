@@ -72,7 +72,6 @@
 									 else  echo $this->Html->link('', array('admin'=> false, 'controller' => $menu_links[$i]['controller'], 'action' => $menu_links[$i]['action']), array('class'=> 'menu-item '.$menu_links[$i]['name']));
 								  if ($menu_links[$i]['name'] == 'tech') 
 										echo "<div class='submenu'>".
-														//$this->Html->link('', array('admin'=> false, 'controller' => 'pages', 'action' => 'contacts'), array('class'=> 'submenu-item scooter')).
 									
 														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'scooters'), array('class'=> 'submenu-item scooter')).
 														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'mopeds'), array('class'=> 'submenu-item moped')).
@@ -80,6 +79,17 @@
 														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'motorcycles'), array('class'=> 'submenu-item motorcycle')).
 														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'quadrocycles'), array('class'=> 'submenu-item quadrocycle')).
 														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'snows'), array('class'=> 'submenu-item snow')).
+														"<div class='submenu-pic'></div>".
+													"</div>";
+													
+										if ($menu_links[$i]['name'] == 'bicycles') 
+										echo "<div class='submenu submenu_bicycles'>".
+									
+														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'bicycles/children'), array('class'=> 'submenu-item children')).
+														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'bicycles/folding'), array('class'=> 'submenu-item folding')).
+														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'bicycles/road'), array('class'=> 'submenu-item road')).
+														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'bicycles/sport'), array('class'=> 'submenu-item sport')).
+														$this->Html->link('', array('admin'=> false, 'controller' => 'mototechnics', 'action' => 'bicycles/two_suspend'), array('class'=> 'submenu-item two_suspend')).
 														"<div class='submenu-pic'></div>".
 													"</div>";
 								}	
