@@ -16,13 +16,20 @@
 		$kol=0; 
 		$cur=0;
 		$size = count($motorollers);
+
 		foreach ($motorollers as $key=>$moto) {
 		  $cur++;
 			//вывод ссылки на все модели
 			if (!isset($thiscrumb)&&($kol>3)&&  
-				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) 
-			echo "<a href='/mototechnics/motorollers/".$lastcomp."' class='show-more'>Показать все модели &gt;&gt;</a>";
-
+				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) {
+						echo "<a href='/mototechnics/motorollers/".$lastcomp."' class='show-more'>Показать все модели </a><br>";
+			}
+			
+			if (!isset($thiscrumb)&&  
+				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) {
+						if (!empty($company_info[$cur-2])) echo $this->Html->link('Полный каталог моделей '.$company_info[$cur-2]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$cur-2]['Company']['name']), array('class' => 'show-catalog' )).'<br><br>';
+			}
+			
 		  if ($lastcomp != $moto['Mototechnic']['company']) {
         echo "<h2 class='company ".$moto['Mototechnic']['company']."' id='".$moto['Mototechnic']['company']."'>"."</h2>";
 			  $lastcomp = $moto['Mototechnic']['company'];
@@ -54,6 +61,10 @@
 				echo "</div>";
 				
 			};
+			
+			if ($kol == $size) {
+				if (!empty($company_info[$kol-1])) echo $this->Html->link('Полный каталог моделей '.$company_info[$kol-1]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$kol-1]['Company']['name']), array('class' => 'show-catalog' ));
+			}
 		}
 	?>	
 </div>

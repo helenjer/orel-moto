@@ -62,8 +62,9 @@ input[type="file"] {
   color: black;
 }
 
-a[href*=".xls"], a[href*=".ods"],  a[href*=".doc"], a[href*=".odt"], a[href*=".rtf"], a[href*=".txt"]{
-  background: url(../img/format-icons.png) 0% 0% no-repeat;
+a[href*=".xls"], a[href*=".ods"],  a[href*=".doc"], a[href*=".odt"], a[href*=".rtf"], a[href*=".txt"],
+a[href*=".pdf"], a[href*=".jpg"], a[href*=".png"], a[href*=".gif"]{
+  background: url(../img/format-icons.png) 0 -187px no-repeat;
   min-height: 33px;
   display: inline-block;
   padding: 10px 0px 0px 60px;
@@ -81,6 +82,15 @@ a[href*=".xls"], a[href*=".ods"]{
 a[href*=".rtf"], a[href*=".txt"]{
   background-position: 0 -92px;
 }
+
+a[href*=".pdf"]{
+  background-position: 0 -140px;
+}
+
+a[href*=".jpg"], a[href*=".png"], a[href*=".gif"]{
+  background-position: 0 -187px;
+}
+
 
 img {
   border: none;
@@ -230,7 +240,7 @@ img {
 .menu-item{
 	width: 205px;
 	margin-bottom: 5px;
-	background: url(../img/menu.png);
+	background: url(../img/menu.png) no-repeat;
 }
 
 .submenu-item {
@@ -321,6 +331,14 @@ img {
 
 .menu-item.boat-motors:hover, .menu-item.boat-motors.act{
   background-position: -222px -300px;
+}
+
+.menu-item.catalogs {
+	background-position: 0px -330px;
+}
+
+.menu-item.catalogs:hover, .menu-item.catalogs.act{
+  background-position: -222px -330px;
 }
 
 .submenu {
@@ -545,10 +563,30 @@ img {
   font-weight: bold;
 }
 
-.ca-text .show-more{
-  display: inline-block;
-  margin: 5px 0px 30px 10px;
+.ca-text .motolist-links {
+	margin-bottom: 30px;
 }
+
+.ca-text .show-more,
+.ca-text .show-catalog {
+  display: inline-block;
+  margin-left: 10px;
+	font: bold italic 15px Arial, sans-serif;
+}
+
+.ca-text .show-more {
+	background: url(../img/icon-show-all.png) 100% 4px no-repeat;
+	padding-right: 32px; 
+}
+
+.ca-text .show-catalog {
+	background: url(../img/icon-download.png) 0 0 no-repeat;
+  margin-top: 10px;
+	padding: 2px 0 0 30px;
+	min-height: 18px;
+}
+
+
 
 .ca-text h2{
   margin-bottom: 20px;

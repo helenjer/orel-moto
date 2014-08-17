@@ -44,6 +44,7 @@ class UsersController extends AppController {
 		$this->set('idboatmotors', $this->Page->find('first', array('conditions' => array('name' => 'boatmotors'))));
 		$this->set('idservice', $this->Page->find('first', array('conditions' => array('name' => 'service'))));
 		$this->set('idgallery', $this->Page->find('first', array('conditions' => array('name' => 'gallery'))));
+		$this->set('idcatalogs', $this->Page->find('first', array('conditions' => array('name' => 'catalogs'))));
 		$this->set('idcontacts', $this->Page->find('first', array('conditions' => array('name' => 'contacts'))));
 	  $this->set('title_for_layout', 'Панель администрирования');
 	}

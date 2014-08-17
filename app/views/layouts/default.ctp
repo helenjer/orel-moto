@@ -57,8 +57,10 @@
 									    '5' => array('name'=> 'for-children', 'admin'=>'false', 'controller' => 'mototechnics', 'action' => 'motochild', 'maincontr' => ''),
 									    '6' => array('name'=> 'service', 'admin'=>'false', 'controller' => 'pages', 'action' => 'service', 'maincontr' => ''),
 									    '7' => array('name'=> 'gallery', 'admin'=>'false', 'controller' => 'pages', 'action' => 'gallery', 'maincontr' => ''),
-									    '8' => array('name'=> 'contacts', 'admin'=>'false', 'controller' => 'pages', 'action' => 'contacts', 'maincontr' => ''));
-									    
+											'8' => array('name'=> 'catalogs', 'admin'=>'false', 'controller' => 'catalogs', 'action' => 'index', 'maincontr' => ''),
+									    '9' => array('name'=> 'contacts', 'admin'=>'false', 'controller' => 'pages', 'action' => 'contacts', 'maincontr' => ''));
+
+
 									    /*'6' => array('name'=> 'boat-motors', 'admin'=>'false', 'controller' => 'pages', 'action' => 'boatmotors', 'maincontr' => ''),*/
 
 																											
