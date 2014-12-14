@@ -1348,6 +1348,7 @@ img.moto {
 .gallery .gal-item a {display: block; outline: none;}
 .gallery .gal-item img {max-width: 120px; display: block;}
 .gallery h2 {text-align: center;}
+.gallery .gal-item a {background: none; padding: 0;}
 
  /* ----- Панель администрирования ----- */
  

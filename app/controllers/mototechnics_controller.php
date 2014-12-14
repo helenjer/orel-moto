@@ -191,10 +191,12 @@ class MototechnicsController extends AppController {
 		if ($company != null) {
 		    
 		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add')));
-		    $this->set('thiscrumb','1');
+		    $this->set('motofiles',$this->Motofile->find('first',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add' => 'DESC' ))));
+				$this->set('thiscrumb','1');
 		}
 		else {
 		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type), 'order' => array('company', 'date_add')));
+				$this->set('motofiles',$this->Motofile->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type), 'order' => array('company', 'date_add' => 'DESC' ))));
 		}
 		//$this->set('thiscrumb','1');
 		
@@ -228,10 +230,13 @@ class MototechnicsController extends AppController {
 		if ($company != null) {
 		    
 		    $motochild = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add')));
-		    $this->set('thiscrumb','1');
+		    $this->set('motofiles',$this->Motofile->find('first',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add' => 'DESC' ))));
+				$this->set('thiscrumb','1');
 		}
 		else {
 		    $motochild = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type), 'order' => array('company', 'date_add')));
+				$this->set('motofiles',$this->Motofile->find('all',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type), 'order' => array('company', 'date_add' => 'DESC' ))));
+
 		}
 		//$this->set('thiscrumb','1');
 		

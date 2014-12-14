@@ -25,7 +25,7 @@
 			
 			if (!isset($thiscrumb)&&  
 				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) {
-						if (!empty($company_info[$cur-2])) echo $this->Html->link('Полный каталог моделей '.$company_info[$cur-2]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$cur-2]['Company']['name']), array('class' => 'show-catalog' )).'<br><br>';
+						if (!empty($company_info[$cur-2]) && !empty($company_info[$cur-2]['Catalog'])) echo $this->Html->link('Полный каталог моделей '.$company_info[$cur-2]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$cur-2]['Company']['name']), array('class' => 'show-catalog' )).'<br><br>';
 			}
 			
 				
@@ -62,7 +62,7 @@
 			};
 			
 			if ($kol == $size) {
-				if (!empty($company_info[$kol-1])) echo $this->Html->link('Полный каталог моделей '.$company_info[$kol-1]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$kol-1]['Company']['name']), array('class' => 'show-catalog' ));
+				if (!empty($company_info[$kol-1]) && !empty($company_info[$kol-1]['Catalog'])) echo $this->Html->link('Полный каталог моделей '.$company_info[$kol-1]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$kol-1]['Company']['name']), array('class' => 'show-catalog' ));
 			}
 		}
 	?>	

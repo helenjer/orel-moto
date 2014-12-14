@@ -4,7 +4,7 @@
 	<?php
 	
 		foreach ($catalogs as $catalog) {
-			echo $this->Html->link($catalog['Catalog']['title'], $catalog['Catalog']['url']).'<br>';
+			echo '<a href="/files/'.$catalog['Catalog']['url'].'" download>'.$catalog['Catalog']['title'].'</a><br>';
 		}	
 		?>
 

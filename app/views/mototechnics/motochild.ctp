@@ -50,7 +50,7 @@
 			
 			if (!isset($thiscrumb)&&  
 				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) {
-						if (!empty($company_info[$cur-2])) echo $this->Html->link('Полный каталог моделей '.$company_info[$cur-2]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$cur-2]['Company']['name']), array('class' => 'show-catalog' )).'<br><br>';
+						if (!empty($company_info[$cur-2]) && !empty($company_info[$cur-2]['Catalog'])) echo $this->Html->link('Полный каталог моделей '.$company_info[$cur-2]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$cur-2]['Company']['name']), array('class' => 'show-catalog' )).'<br><br>';
 			}
 		     
 		     if ((!isset($thiscrumb))&&($kol<=3)&&
@@ -58,7 +58,7 @@
 			    if (!empty($motofiles))
 			    foreach ($motofiles as $key_f=>$file)
 				   if ($file['Motofile']['company'] === $lastcomp) {
-					  echo '<a href="/files/'.$file['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($lastcomp).'</a>';
+					  echo '<a href="/files/'.$file['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($lastcomp).'</a><br>';
 					  break;
 				   }
 		     }
@@ -104,20 +104,20 @@
 			    if (!empty($motofiles))
 			    foreach ($motofiles as $key_f=>$file)
 				   if ($file['Motofile']['company'] === $lastcomp) {
-					  echo '<a href="/files/'.$file['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($lastcomp).'</a>';
+					  echo '<a href="/files/'.$file['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($lastcomp).'</a><br>';
 					  break;
 				   }
 		     }     
 			     
 		     if (isset($thiscrumb)&&($size == $cur)) {//страница компании 
 			    if (!empty($motofiles))
-				   echo '<a href="/files/'.$motofiles['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($moto['Mototechnic']['company']).'</a>';
+				   echo '<a href="/files/'.$motofiles['Motofile']['url'].'">'.'Полный список детского транспорта '.ucfirst($moto['Mototechnic']['company']).'</a><br>';
 		     }
 			
 		}
 		
 		if ($kol == $size) {
-			if (!empty($company_info[$kol-1])) echo $this->Html->link('Полный каталог моделей '.$company_info[$kol-1]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$kol-1]['Company']['name']), array('class' => 'show-catalog' ));
+			if (!empty($company_info[$kol-1]) && !empty($company_info[$kol-1]['Catalog'])) echo $this->Html->link('Полный каталог моделей '.$company_info[$kol-1]['Company']['title'], array('admin'=>false, 'controller' => 'catalogs', 'action' => '?company='.$company_info[$kol-1]['Company']['name']), array('class' => 'show-catalog' ));
 		}
 	}
 	?>	
