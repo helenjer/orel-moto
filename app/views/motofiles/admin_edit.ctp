@@ -18,7 +18,7 @@
   	$is_bicycle = $this->data['Motofile']['type'] == 'bicycle';
 	$is_motochild = $this->data['Motofile']['type'] == 'motochild';
 	if ($is_bicycle) {
-		$options_for_company = array('racer' => 'Racer', 'stels' => 'Stels', 'forward' => 'Forward', 'fury' => 'FURY');
+		$options_for_company = array('racer' => 'Racer', 'stels' => 'Stels', 'stark' => 'Stark', 'fury' => 'FURY');
 		$options_for_subtype = array('children' => 'Детские', 'folding' => 'Складные', 'road'=>'Дорожные', 'sport' => 'Спортивные', 'two_suspend'=>'Двухподвесы');
 		}
 	else if ($is_motochild) {

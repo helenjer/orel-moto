@@ -1041,6 +1041,11 @@ img {
   width: 99px;
 }
 
+.company.stark {
+  background-position:-1547px -50px;
+  width: 87px;
+}
+
 .companies-menu .company.omaks:hover,
 .companies-menu .company.omaks.act{
   background-position: 0px 1px;
@@ -1126,6 +1131,12 @@ img {
   width: 99px;
 }
 
+.companies-menu .company.stark:hover,
+.companies-menu .company.stark.act{
+  background-position: -1547px 1px;
+  width: 87px;
+}
+
 .cm-partner-item .cmp-info span.company {
   display: inline-block;
   float: right;
@@ -1167,6 +1178,21 @@ img {
 
 .cm-partner-item .cmp-info span.company.nexus.act {
   background-position:-545px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.fury.act {
+  background-position:-1255px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.maverick.act {
+  background-position:-1430px -50px;
+}
+
+.cm-partner-item .cmp-info span.company.stark.act {
+  background-position:-1542px -50px;
+}
+.cm-partner-item .cmp-info span.company.tank.act {
+  background-position:-1337px -50px;
 }
 
 h2.company {
