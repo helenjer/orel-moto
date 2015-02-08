@@ -45,7 +45,7 @@
 			//вывод ссылки на все модели
 			if (!isset($thiscrumb)&&($kol>3)&&  
 				($lastcomp != $moto['Mototechnic']['company'] || ($size == $cur))) {
-						echo "<a href='/mototechnics/bicycles/".$lastcomp."' class='show-more'>Показать все модели </a><br>";
+						echo "<a href='/mototechnics/bicycles/".$sub_type."/".$lastcomp."' class='show-more'>Показать все модели </a><br>";
 			}
 			
 			if (!isset($thiscrumb)&&  

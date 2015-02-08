@@ -186,6 +186,7 @@ class MototechnicsController extends AppController {
 	
 	function bicycles($sub_type = null, $company = null)  {
 		$this->loadModel('Company');
+		$company_info = Array();
 	    if ($sub_type != null) {
 		$this->loadModel('Motofile');
 		if ($company != null) {
