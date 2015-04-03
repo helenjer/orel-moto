@@ -4,7 +4,7 @@
         <title><?php echo $title_for_layout?></title>
         <meta name="keywords" content="<?/*=$keywords_for_layout*/?>">
         <meta name="description" content="<?/*=$description_for_layout*/?>">
-        <meta http-equiv="Content-Type" content="text/html; charset=cp-1251">	
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">	
 		<?php	echo $this->Html->css('style'); 
 		 //echo $scripts_for_layout;
 	     ?>
