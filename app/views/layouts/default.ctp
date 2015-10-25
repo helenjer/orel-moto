@@ -14,7 +14,7 @@
 	     
 	    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
 	    <script type="text/javascript" src="/js/jquery.colorbox-min.js"></script>
-            <script type="text/javascript" src="/js/application.js"></script>
+            <script type="text/javascript" src="/js/application.js?1"></script>
 	    <script type="text/javascript" src="/js/jquery.nivo.slider.js"></script>
 
 	    
@@ -70,7 +70,8 @@
 										($menu_links[$i]['action'] === $this->params['action']) || 
 										($menu_links[$i]['maincontr'] === $this->params['controller']) &&
 										($this->params['action'] !== 'bicycles') &&
-										($this->params['action'] !== 'motochild'))  
+										($this->params['action'] !== 'motochild') &&
+										($this->params['action'] !== 'museum'))  
 											 echo '<span class ="menu-item '.$menu_links[$i]['name'].' act"></span>';
 									 else  echo $this->Html->link('', array('admin'=> false, 'controller' => $menu_links[$i]['controller'], 'action' => $menu_links[$i]['action']), array('class'=> 'menu-item '.$menu_links[$i]['name']));
 								  if ($menu_links[$i]['name'] == 'tech') 
