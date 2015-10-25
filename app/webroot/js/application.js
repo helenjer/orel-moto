@@ -2,7 +2,7 @@ function resizeblock() {
    var htxt = $('.content-artical').height();	 
    var hban = $('.banners').height();
    if (htxt > hban+481)  {
-	    $('.banners').height(htxt-496); 
+	    $('.banners').height(htxt-546); 
 	    $('.content-artical').height(htxt);
 	 }
    else  {$('.content-artical').height(hban+481);}

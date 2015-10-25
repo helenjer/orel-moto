@@ -42,20 +42,25 @@ class MototechnicsController extends AppController {
 	
 	function _getPrevPageLink() {
 		$prev_url = array();
-		$m_type = $this->data['Mototechnic']['type'] ? $this->data['Mototechnic']['type'] : $this->Mototechnic->field('type');
-		switch ($m_type) {
-			case  'bicycle':
-				$prev_url['action'] = 'bicycles_index';
-				$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
-			break;
-			case  'motochild':
-				$prev_url['action'] = 'motochild_index';
-				$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
-			break;
-			default:
-				$prev_url['action'] = 'index';
-				$prev_url['anchor'] = $this->data['Mototechnic']['type'];
-			break;
+		if ($this->data['Mototechnic']['is_museum']) {
+			$prev_url['action'] = 'museum_index';
+			$prev_url['anchor'] = '';
+		} else {
+			$m_type = $this->data['Mototechnic']['type'] ? $this->data['Mototechnic']['type'] : $this->Mototechnic->field('type');
+			switch ($m_type) {
+				case  'bicycle':
+					$prev_url['action'] = 'bicycles_index';
+					$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
+				break;
+				case  'motochild':
+					$prev_url['action'] = 'motochild_index';
+					$prev_url['anchor'] = $this->data['Mototechnic']['sub_type'];
+				break;
+				default:
+					$prev_url['action'] = 'index';
+					$prev_url['anchor'] = $this->data['Mototechnic']['type'];
+				break;
+			}
 		}
 		return $prev_url;
 	}
@@ -69,10 +74,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');  #TODO !!! table 'Company' instead of field 'company'
 		$company_info = Array();
 		if ($company != null) {
-			$scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 			$this->set('thiscrumb','1');
 		}
-		else $scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else $scooters = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'scooter', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
     foreach ($scooters as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -80,7 +85,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('scooters',$scooters);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type ='scooter' && company NOT IN ('omaks', 'hors') ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type ='scooter' && is_museum = 0 && company NOT IN ('omaks', 'hors') ORDER BY company ASC;"));
 		$this->_setmeta('scooter');
 	}
 	
@@ -88,10 +93,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');
 		$company_info = Array();
 		if ($company != null) {
-			$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' =>'moped', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' =>'moped', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 			$this->set('thiscrumb','1');
 		}
-		else 	$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'moped', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else 	$mopeds = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'moped', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($mopeds as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -100,7 +105,7 @@ class MototechnicsController extends AppController {
 		} 
 		$this->set('mopeds',$mopeds );
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'moped' && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'moped' && is_museum = 0 && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
 
 		$this->_setmeta('moped');
 	}
@@ -109,10 +114,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');
 		$company_info = Array();
 		if ($company != null) {
-			$motorcycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$motorcycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else	$motorcycles =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else	$motorcycles =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motorcycle', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($motorcycles as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -121,7 +126,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('motorcycles',$motorcycles);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'motorcycle' && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'motorcycle' && is_museum = 0 && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
 		$this->_setmeta('motorcycle');
 	}
 	
@@ -129,10 +134,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');
 		$company_info = Array();
 		if ($company != null) {
-			$motorollers = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$motorollers = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else	$motorollers =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else	$motorollers =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($motorollers as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -140,7 +145,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('motorollers',$motorollers);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'motoroller' && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'motoroller' && is_museum = 0 && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
 		$this->_setmeta('motoroller');
 	}
 	
@@ -148,10 +153,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');
 		$company_info = Array();
 		if ($company != null) { 
-			$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else 	$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else 	$quadrocycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'quadrocycle', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($quadrocycles as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -159,7 +164,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('quadrocycles',$quadrocycles);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='quadrocycle' && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='quadrocycle' && is_museum = 0 && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
 		$this->_setmeta('quadrocycle');
 	}
 	
@@ -168,10 +173,10 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Company');
 		$company_info = Array();
 		if ($company != null) { 
-			$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'company' => $company), 'order' => array('weight DESC', 'date_add')));
+			$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'company' => $company, 'is_museum' => 0), 'order' => array('weight DESC', 'date_add')));
 		  $this->set('thiscrumb','1');
 		}
-		else 	$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		else 	$snows = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'snow', 'is_museum' => 0, 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
 		foreach ($snows as &$m) {
 		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
 			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
@@ -179,7 +184,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('snows',$snows);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='snow' && company NOT IN ('omaks', 'hors') ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='snow' && is_museum = 0 && company NOT IN ('omaks', 'hors') ORDER BY company ASC;"));
 		$this->_setmeta('snow');
 	}
 	
@@ -191,12 +196,12 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Motofile');
 		if ($company != null) {
 		    
-		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add')));
+		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'company' => $company, 'is_museum' => 0), 'order' => array('date_add')));
 		    $this->set('motofiles',$this->Motofile->find('first',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add' => 'DESC' ))));
 				$this->set('thiscrumb','1');
 		}
 		else {
-		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type), 'order' => array('company', 'date_add')));
+		    $bicycles = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type, 'is_museum' => 0), 'order' => array('company', 'date_add')));
 				$this->set('motofiles',$this->Motofile->find('all',  array('conditions' => array('type' => 'bicycle', 'sub_type' => $sub_type), 'order' => array('company', 'date_add' => 'DESC' ))));
 		}
 		//$this->set('thiscrumb','1');
@@ -212,7 +217,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('bicycles',$bicycles);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='bicycle' and sub_type='".$sub_type."' ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='bicycle' and is_museum = 0 and sub_type='".$sub_type."' ORDER BY company ASC;"));
 		
 	    }
 	    else $bicycle_index = true;
@@ -230,7 +235,7 @@ class MototechnicsController extends AppController {
 		$this->loadModel('Motofile');
 		if ($company != null) {
 		    
-		    $motochild = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add')));
+		    $motochild = $this->Mototechnic->find('all',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type, 'company' => $company, 'is_museum' => 0), 'order' => array('date_add')));
 		    $this->set('motofiles',$this->Motofile->find('first',  array('conditions' => array('type' => 'motochild', 'sub_type' => $sub_type, 'company' => $company), 'order' => array('date_add' => 'DESC' ))));
 				$this->set('thiscrumb','1');
 		}
@@ -252,7 +257,7 @@ class MototechnicsController extends AppController {
 		}
 		$this->set('motochild',$motochild);
 		$this->set('company_info',$company_info);
-		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='motochild' and sub_type='".$sub_type."' ORDER BY company ASC;"));
+		$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type='motochild' and is_museum = 0 and sub_type='".$sub_type."' ORDER BY company ASC;"));
 		
 	    }
 	    else $motochild_index = true;
@@ -260,6 +265,25 @@ class MototechnicsController extends AppController {
 	    $this->set('motochild_index',$motochild_index);
 	    $this->_setmeta('motochild');
 
+	}
+	
+	function museum()  {
+		//$this->loadModel('Company');
+		//$company_info = Array();
+		//if ($company != null) {
+			$motos = $this->Mototechnic->find('all',  array('conditions' => array('is_museum' => '1'), 'order' => array('date_add')));
+		//  $this->set('thiscrumb','1');
+		//}
+		//else	$items =$this->Mototechnic->find('all',  array('conditions' => array('type' => 'motoroller', 'NOT' => array('Mototechnic.company' => array('omaks', 'hors'))), 'order' => array('company', 'weight DESC', 'date_add')));
+		foreach ($motos as &$m) {
+		  $m['Mototechnic']['short_txt']= $this->_decode_from_db($m['Mototechnic']['short_txt']);
+			$m['Mototechnic']['full_txt']= $this->_decode_from_db($m['Mototechnic']['full_txt']);
+			//$company_info[]= $this->Company->find('first', array('conditions' => array('name' => $m['Mototechnic']['company'])));
+		}
+		$this->set('motos',$motos);
+		//$this->set('company_info',$company_info);
+		//$this->set('companies',$this->Mototechnic->query("SELECT distinct company FROM mototechnics WHERE type = 'motoroller' && company NOT IN ('omaks', 'hors')  ORDER BY company ASC;"));
+		$this->_setmeta('museum');
 	}
 	
 	
@@ -280,7 +304,7 @@ class MototechnicsController extends AppController {
 		$types = Array('scooter', 'moped', 'motorcycle', 'motoroller', 'quadrocycle', 'snow');
 		$models = Array();
 		foreach ($types as $type) {
-			$models[$type] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  $type), 'order' => array('company', 'weight DESC', 'date_add')));
+			$models[$type] = $this->Mototechnic->find('all',  array('conditions' => array('type' =>  $type, 'is_museum' => 0), 'order' => array('company', 'weight DESC', 'date_add')));
 		}
 		$this->set('models', $models);
 		/*TODO 'undef' here and in views*/
@@ -314,6 +338,13 @@ class MototechnicsController extends AppController {
 			}
 			$this->set('models', $models);   
 	    $this->set('title_for_layout', 'Редактирование детского транспорта');  
+	}
+	
+	function admin_museum_index () {
+	    $this->layout = 'admin';
+			$models = $this->Mototechnic->find('all',  array('conditions' => array('is_museum' =>  '1'), 'order' => array('date_add')));
+			$this->set('models', $models);   
+	    $this->set('title_for_layout', 'Редактирование раздела Наш музей');  
 	}
 
 	function admin_add() {

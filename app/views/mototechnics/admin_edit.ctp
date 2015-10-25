@@ -9,6 +9,7 @@
 	$spaw4->height = '150px'; 
 	$options_for_type = array('scooter' => 'Скутер', 'moped' => 'Мопед', 'motoroller'=>'Мотороллер', 'motorcycle' => 'Мотоцикл', 'quadrocycle' => 'Квадроцикл','snow' => 'Снегоходы');
 	//$options_for_company = array('omaks' => 'Omaks', 'hors' => 'HorsMoto', 'yamasaki' => 'Yamasaki', 'racer' => 'Racer', 'irbis' => 'Irbis', 'eurotex' => 'Eurotex', 'nexus' => 'Nexus Motors');
+ 	$is_museum = ($this->data['Mototechnic']['is_museum'] == 1);
   $is_bicycle = ($this->data['Mototechnic']['type'] == 'bicycle');
 	$is_motochild = ($this->data['Mototechnic']['type'] == 'motochild');
 	if ($is_bicycle) {
@@ -34,8 +35,9 @@ else if ($is_motochild) echo(' детского транспорта')?>
 				echo "<div class='field'>".$this->Form->input('sub_type', array('type'=>'select', 'style' => 'width: 200px', 'label'=> 'Подтип', 'options' =>$options_for_subtype, 'default'=>'1'))."</div>";
 			}
 				else  echo "<div class='field'>".$this->Form->input('type', array('type'=>'select', 'style' => 'width: 200px', 'label'=> 'Тип мототехники', 'options' =>$options_for_type))."</div>";
-			echo "<div class='field'>".$this->Form->input('company', array('type'=>'select', 'style' => 'width: 200px', 'label'=> 'Фирма', 'options' =>$options_for_company))."</div>";
-			if ($is_bicycle || $is_motochild) echo $form->input('weight', array('type'=>'hidden', 'value' => '0'));
+			if ($is_museum) echo $form->input('company', array('type'=>'hidden', 'value' => 'others'));
+				else echo "<div class='field'>".$this->Form->input('company', array('type'=>'select', 'style' => 'width: 200px', 'label'=> 'Фирма', 'options' =>$options_for_company))."</div>";
+			if ($is_bicycle || $is_motochild || $is_museum) echo $form->input('weight', array('type'=>'hidden', 'value' => '0'));
 				else echo "<div class='field'>".$this->Form->input('weight', array('style' => 'width: 200px', 'label'=> 'Вес (*для сортировки)'))."</div>";
 			echo "<div class='field'>".$this->Form->input('model', array( 'style' => 'width: 300px','label'=> 'Наименование модели'))."</div>";
 			echo "<br>Краткое описание"; $spaw1->show();
@@ -45,6 +47,7 @@ else if ($is_motochild) echo(' детского транспорта')?>
 			echo "<div class='field'>".$this->Form->input('presence', array( 'style' => 'width: 270px','label'=> 'Наличие'))."</div>";
 			echo "<br><div class='field'>".$this->Form->input('img', array('type' => 'file', 'label'=> 'Изображение'))."</div>";
 			echo "<br><div class='field'>".$this->Form->input('is_new', array('type'=>'checkbox', 'label'=> 'Новая модель'))."</div>";
+			echo "<br><div class='field'>".$this->Form->input('is_museum', array('type'=>'checkbox','label'=> 'Наш музей'))."</div>";
 			echo "<div class='field'>".$this->Form->input('date_add', array('label'=> 'Дата'))."</div>";
 			if (!$is_bicycle && !$is_motochild) {
 				//echo "<br><br>Видео"; $spaw4->show();

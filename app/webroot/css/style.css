@@ -220,7 +220,7 @@ img {
 /* ----- Главное меню ----- */
  
 .menu{
-  height: 386px;
+  height: 436px;
   width: 244px;
   margin: 110px 0px 0px 20px;
 	border-right: #ffda73 solid 2px; 
@@ -315,6 +315,14 @@ img {
 
 .menu-item.contacts:hover, .menu-item.contacts.act{
   background-position: -222px -210px;
+}
+
+.menu-item.museum{
+  background-position: 0px -360px;
+}
+
+.menu-item.museum:hover, .menu-item.museum.act{
+  background-position: -222px -360px;
 }
 
 .menu-item.spectech{
@@ -535,7 +543,7 @@ img {
   min-width:387px;
   max-width:792px;
   margin: 0 44px 0 369px;
-  min-height: 550px;
+  min-height: 600px;
 	border-bottom: gray 1px dashed;
 }
 

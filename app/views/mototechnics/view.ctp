@@ -1,7 +1,8 @@
 <?php 
   $mototype = array('scooter'=>'Скутер', 'moped'=>'Мопед','motorcycle'=>'Мотоцикл', 'motoroller'=>'Мотороллер', 'quadrocycle'=>'Квадроцикл', 'snow'=>'Снегоход', 'bicycle'=>'Велосипед', 'motochild'=>'Детский транспорт');
   $this->Html->addCrumb('Мототехника', '');
-  if ($tech['Mototechnic']['type'] == 'motochild') $this->Html->addCrumb($mototype[$tech['Mototechnic']['type']],$tech['Mototechnic']['type']);
+	if ($tech['Mototechnic']['is_museum'] == '1') $this->Html->addCrumb('Наш музей','/mototechnics/museum/');
+  elseif ($tech['Mototechnic']['type'] == 'motochild') $this->Html->addCrumb($mototype[$tech['Mototechnic']['type']],$tech['Mototechnic']['type']);
   else  $this->Html->addCrumb($mototype[$tech['Mototechnic']['type']].'ы',$tech['Mototechnic']['type'].'s');
   $this->Html->addCrumb($tech['Mototechnic']['model'], ''); 
  ?>
